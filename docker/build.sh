@@ -57,8 +57,6 @@ done
 echo "Using Uranium branch ${URANIUM_BRANCH} ..."
 git clone --depth=1 -b "${URANIUM_BRANCH}" https://github.com/Ultimaker/Uranium.git "${PROJECT_DIR}"/Uranium
 export PYTHONPATH="${PROJECT_DIR}/Uranium:.:${PYTHONPATH}"
-export PATH="${CURA_BUILD_ENV_PATH}/bin:${PATH}"
-export PKG_CONFIG_PATH="${CURA_BUILD_ENV_PATH}/lib/pkgconfig:${PKG_CONFIG_PATH}"
 
 mkdir build
 cd build
@@ -70,13 +68,5 @@ cmake3 \
     -DPRINT_PLUGIN_LIST=OFF \
     -DGENERATE_TRANSLATIONS=OFF \
     ..
-make
-
-cmake3 "${SRC_PATH}" \
-    -DCMAKE_BUILD_TYPE="${CURA_BUILD_ENV_BUILD_TYPE}" \
-    -DCMAKE_INSTALL_PREFIX="${CURA_BUILD_ENV_PATH}" \
-    -DCMAKE_PREFIX_PATH="${CURA_BUILD_ENV_PATH}" \
-    -DCURA_ARCUS_BRANCH_OR_TAG="${CURA_ARCUS_BRANCH_OR_TAG}" \
-    -DCURA_SAVITAR_BRANCH_OR_TAG="${CURA_SAVITAR_BRANCH_OR_TAG}"
 make
 

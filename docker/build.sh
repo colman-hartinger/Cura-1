@@ -69,3 +69,21 @@ cmake3 \
     -DGENERATE_TRANSLATIONS=OFF \
     ..
 make
+
+cbe_src_dir='~'
+cbe_install_dir='~'
+
+cd $cbe_src_dir
+mkdir build
+cd build
+
+# Set some environment variables to make sure that the installed tools can be found.
+export PATH=$cbe_install_dir/bin:$PATH
+export PKG_CONFIG_PATH=$cbe_install_dir/lib/pkgconfig:$PKG_CONFIG_PATH
+
+cmake -DCMAKE_BUILD_TYPE=Release \
+      -DCMAKE_INSTALL_PREFIX=$cbe_install_dir \
+      -DCMAKE_PREFIX_PATH=$cbe_install_dir \
+      ..
+make
+

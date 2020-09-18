@@ -57,6 +57,8 @@ done
 echo "Using Uranium branch ${URANIUM_BRANCH} ..."
 git clone --depth=1 -b "${URANIUM_BRANCH}" https://github.com/Ultimaker/Uranium.git "${PROJECT_DIR}"/Uranium
 export PYTHONPATH="${PROJECT_DIR}/Uranium:.:${PYTHONPATH}"
+export PATH="${CURA_BUILD_ENV_PATH}/bin:${PATH}"
+export PKG_CONFIG_PATH="${CURA_BUILD_ENV_PATH}/lib/pkgconfig:${PKG_CONFIG_PATH}"
 
 mkdir build
 cd build
@@ -70,20 +72,11 @@ cmake3 \
     ..
 make
 
-cbe_src_dir='~'
-cbe_install_dir='~'
-
-cd $cbe_src_dir
-mkdir build
-cd build
-
-# Set some environment variables to make sure that the installed tools can be found.
-export PATH=$cbe_install_dir/bin:$PATH
-export PKG_CONFIG_PATH=$cbe_install_dir/lib/pkgconfig:$PKG_CONFIG_PATH
-
-cmake -DCMAKE_BUILD_TYPE=Release \
-      -DCMAKE_INSTALL_PREFIX=$cbe_install_dir \
-      -DCMAKE_PREFIX_PATH=$cbe_install_dir \
-      ..
+cmake3 "${SRC_PATH}" \
+    -DCMAKE_BUILD_TYPE="${CURA_BUILD_ENV_BUILD_TYPE}" \
+    -DCMAKE_INSTALL_PREFIX="${CURA_BUILD_ENV_PATH}" \
+    -DCMAKE_PREFIX_PATH="${CURA_BUILD_ENV_PATH}" \
+    -DCURA_ARCUS_BRANCH_OR_TAG="${CURA_ARCUS_BRANCH_OR_TAG}" \
+    -DCURA_SAVITAR_BRANCH_OR_TAG="${CURA_SAVITAR_BRANCH_OR_TAG}"
 make
 

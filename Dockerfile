@@ -1,4 +1,3 @@
-FROM ultimaker/cura-build-environment
 
 # Environment vars for easy configuration
 ENV CURA_APP_DIR=/srv/cura

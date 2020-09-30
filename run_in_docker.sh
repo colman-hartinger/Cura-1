@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-esport DISPLAY=$DISPLAY
+export DISPLAY=$DISPLAY
 python3 cura_app.py --headless

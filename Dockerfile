@@ -40,5 +40,6 @@ RUN mv $CURA_APP_DIR/materials resources/materials
 WORKDIR $CURA_APP_DIR/Cura
 ENV PYTHONPATH=${PYTHONPATH}:$CURA_APP_DIR/Uranium
 # RUN chmod +x ./CuraEngine
+RUN yum install -y xorg-x11-server-Xvfb freeglut-devel mesa-libGL
 RUN chmod +x ./run_in_docker.sh
 CMD "./run_in_docker.sh"

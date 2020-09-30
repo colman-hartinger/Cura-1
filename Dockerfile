@@ -43,5 +43,6 @@ WORKDIR $CURA_APP_DIR/Cura
 ENV PYTHONPATH=${PYTHONPATH}:$CURA_APP_DIR/Uranium
 # RUN yum upgrade -y
 # RUN yum install -y xorg-x11-server-Xvfb freeglut-devel mesa-libGL
+ENV DISPLAY:1
 RUN chmod +x ./run_in_docker.sh
 CMD "./run_in_docker.sh"

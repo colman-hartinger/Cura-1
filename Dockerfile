@@ -23,7 +23,7 @@ RUN mv $CURA_APP_DIR/materials resources/materials
 
 # Run Cura
 WORKDIR $CURA_APP_DIR/Cura
-ENV PYTHONPATH=${PYTHONPATH}:$CURA_APP_DIR/Uranium
+ENV PYTHONPATH=${PYTHONPATH}:$CURA_APP_DIR/Uranium:$CURA_APP_DIR
 RUN apt-get install -y mesa-utils xvfb
 # RUN cd CuraX
 RUN chmod +x ./run_in_docker.sh

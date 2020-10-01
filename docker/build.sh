@@ -58,15 +58,5 @@ echo "Using Uranium branch ${URANIUM_BRANCH} ..."
 git clone --depth=1 -b "${URANIUM_BRANCH}" https://github.com/Ultimaker/Uranium.git "${PROJECT_DIR}"/Uranium
 export PYTHONPATH="${PROJECT_DIR}/Uranium:.:${PYTHONPATH}"
 
-mkdir build
-cd build
-cmake3 \
-    -DCMAKE_BUILD_TYPE=Debug \
-    -DCMAKE_PREFIX_PATH="${CURA_BUILD_ENV_PATH}" \
-    -DURANIUM_DIR="${PROJECT_DIR}/Uranium" \
-    -DBUILD_TESTS=ON \
-    -DPRINT_PLUGIN_LIST=OFF \
-    -DGENERATE_TRANSLATIONS=OFF \
-    ..
-make
+
 
